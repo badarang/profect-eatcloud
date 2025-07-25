@@ -1,0 +1,62 @@
+﻿기능,유형,URL,설명,담당자,우선순위,상태,카테고리
+회원가입,POST,/auth/signup,,,,시작 전,인증
+로그인,POST,/auth/signin," ",,,시작 전,인증
+로그아웃,POST,/auth/logout," ",,,시작 전,인증
+사용자 정보 조회,GET,/auth/me," ",,,시작 전,인증
+이메일 중복 확인,GET,/auth/check-email?email={email}," ",,,시작 전,인증
+"이메일 인증 기능 ",POST,/auth/email,"성문 추가: 실제 사용자에게 이메일인증 코드 전달하는 api ",,,시작 전,인증
+주문 생성 (Pre-order),POST,/orders/pre-order,결제 직전 장바구니에서 주문 생성,,,시작 전,사용자
+결제 임시저장,POST,/payments/temp-save,order_id와 amount 서버에 저장 필요(토스페이먼츠 연동 고려),,,시작 전,사용자
+결제 임시저장 검증,POST,/payments/validate,클라이언트와 비교해서 결제 정보가 동일한지 확인해야함,,,시작 전,사용자
+결제 승인,POST,/payments/confirm,결제를 승인하고 클라이언트에 알려줘야 함,,,시작 전,사용자
+결제 콜백,POST,/payments/callback,"PG사 → 서버에 콜백 ",,,시작 전,사용자
+결제 조회,GET,/payments/{payment_key},결제 정보를 조회하는 기능,,,시작 전,사용자
+결제 취소,POST,/payments/{payment_key}/cancel,결제 취소 요청,,,시작 전,사용자
+프로필 조회,GET,/mypage/profile," 로그인한 사용자의 프로필 정보 조회",,,시작 전,사용자
+프로필 수정,PATCH,/mypage/profile,"사용자 닉네임, 연락처 등 정보 수정",,,시작 전,사용자
+회원 탈퇴,DELETE,/mypage/profile,사용자의 계정을 휴면 처리함,,,시작 전,사용자
+주소 목록 조회,GET,/mypage/addresses,사용자의 주소 목록 조회,,,시작 전,사용자
+주소 등록,POST,/mypage/addresses,새 주소 등록,,,시작 전,사용자
+주소 수정,PATCH,/mypage/addresses/{address_id},주소 정보 수정,,,시작 전,사용자
+주소 삭제,DELETE,/mypage/addresses/{address_id}," 주소 삭제",,,시작 전,사용자
+기본 주소 설정,PATCH,/mypage/addresses/{address_id}/select,해당 주소를 기본 주소로 설정,,,시작 전,사용자
+주문 목록 조회,GET,/mypage/orders,전체 주문 목록 조회,,,시작 전,사용자
+주문 상세 조회,GET,/mypage/orders/{order_id},특정 주문 상세 정보 조회,,,시작 전,사용자
+리뷰 목록 조회,GET,/mypage/reviews,내가 작성한 리뷰 목록 조회,,,시작 전,사용자
+리뷰 삭제,DELETE,/mypage/reviews/{review_id},특정 리뷰 삭제,,,시작 전,사용자
+,,,,,,시작 전,사용자
+————————-,,,,,,시작 전,사용자
+매장 카테고리별 매장 검색,GET,/store/search/category,"검색에서 (중식, 일식, 양식, 한식, 햄버거 등등)가계 카테고리 기반 매장서치) 이때 추가로 가계중에 주문 가능 거리에 사용자가 속해있는 것만",,,시작 전,사용자
+메뉴 카테고리별 메뉴 검색,GET,/store/search/menu-category,"검색에서 (짜장면, 크림파스타 등등) 메뉴 카테고리 기반 매장서치) 이때 추가로 가계중에 주문 가능 거리에 사용자가 속해있는 것만",,,시작 전,사용자
+단일 매장 메뉴 리스트 조회,GET,/stores/{storeId}/menus,선택한 매장의 메뉴 전체 조회,,,시작 전,사용자
+장바구니에 메뉴 추가,POST,/cart/items,json 형태로 데이터 추가,,,시작 전,사용자
+장바구니 메뉴 수량 수정,PATCH,/cart/items/{quantity},주문할 메뉴 갯수 수정하기,,,시작 전,사용자
+장바구니에서 삭제하기,DELETE,/cart/items/all,장바구니 전체삭제,,,시작 전,사용자
+장바구니에서 아이템 삭제하기,DELETE,/cart/items/{storeId}/{menuNum},장바구니에서 특정 메뉴 삭제,,,시작 전,사용자
+장바구니에 담긴 메뉴 보기,GET,/cart/items,장바구니에 담긴 메뉴 불러오기,,,시작 전,사용자
+,,,,,,시작 전,사용자
+제목으로 검색,POST,https://api.notion.com/v1/search,뭔갈 합니다.,,🚨긴급!!,시작 전,검색
+메뉴 등록,POST,/stores/{store_id}/menus,새로운 메뉴 추가,,,시작 전,사장
+메뉴 목록 조회,GET,/stores/{store_id}/menus,가게의 모든 메뉴 조회,,,시작 전,사장
+메뉴 상세 조회,GET,/stores/{store_id}/menus/{menu_id}," 각 메뉴의 상세 정보 조회",,,시작 전,사장
+메뉴 수정,PATCH,/stores/{store_id}/menus/{menu_id},메뉴 정보 업데이트,,,시작 전,사장
+메뉴 삭제,DELETE,/stores/{store_id}/menus/{menu_id},메뉴 삭제,,,시작 전,사장
+메뉴 ai 상품 설명 요청,POST,/stores/{store_id}/menus/{menu_id}/ai-description,ai 상품 설명 자동 생성 요청(사장님이 메뉴 재료와 맛 입력하면 생성되게 임의로 설정..),,,시작 전,사장
+주문 수락,POST,/stores/{store_id}/orders/{order_id}/accept,가게에서 주문을 수락,,,시작 전,사장
+주문 취소,POST,/stores/{store_id}/orders/{order_id}/cancel,가게에서 주문을 취소,,,시작 전,사장
+전체 주문내역조회,GET,/stores/{store_id}/orders,가게에서 전체 주문 내역 조회,,,시작 전,사장
+주문 상세 내역 조회,GET,/stores/{store_id}/orders/{order_id},특정 주문 내역 상세 조회,,,시작 전,사장
+대면 주문 등록,POST,/orders/offline," 사장님이 현장에서 주문을 등록함",,,시작 전,사장
+SNS 메시지 전송,POST,/notifications/send," 유저가 전화번호를 입력하면 SNS 알림이 옴(ex. 포인트 적립, 카카오톡 알림)",,,시작 전,사장
+전체 사용자 목록 조회,GET,/admin/users," ",,,시작 전,Admin
+사용자 삭제,DELETE,/admin/users/{user_id}," 성문: 이거는.. 사용자 Van 하는 건가요..?→ 악성 리뷰나 진상",,,시작 전,Admin
+가게 등록,POST,/admin/stores," 주문가능시간, 최소주문금액, 주문가능거리",,,시작 전,Admin
+가게 목록 조회,GET,/admin/stores," ",,,시작 전,Admin
+가게 정보 변경,PATCH,/admin/stores/{store_id}," ",,,시작 전,Admin
+가게 삭제,DELETE,/admin/stores/{store_id}," ",,,시작 전,Admin
+카테고리 추가,POST,/admin/categories," ",,,시작 전,Admin
+카테고리 변경,PATCH,/admin/categories/{category_id}," ",,,시작 전,Admin
+카테고리 삭제,DELETE,," ",,,시작 전,Admin
+주문 상세 조회,GET,/admin/orders/{order_id}," ",,,시작 전,Admin
+주문 상태 변경,PATCH,/admin/orders/{order_id}/status," ",,,시작 전,Admin
+대시보드,GET,/admin/dashboard," ",,,시작 전,Admin
